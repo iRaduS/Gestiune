@@ -35,18 +35,16 @@ def format_worksheet(employee, curr_ws):
 	curr_ws['B17'] = ''
 	curr_ws['C19'] = employee[3]
 	###########################################################
-	ore_normale = 0
-	if employee[5] != None:
-		ore_normale = employee[5]
-	else:
-		ore_normale = 0
-	curr_ws['C20'] = ore_normale * 7
+	curr_ws['C20'] = employee[6]
 	if employee[7] != None:
 		curr_ws['C21'] = employee[7]
 	else:
 		curr_ws['C21'] = 0
 	if employee[8] != None:
-		curr_ws['C22'] = employee[8]
+                if isinstance(employee[8], (int, float)):
+                        curr_ws['C22'] = employee[8]
+                else:
+                        curr_ws['C22'] = employee[3] - employee[6] - employee[7]
 	else:
 		curr_ws['C22'] = 0
 	##########################################################
@@ -103,7 +101,7 @@ def format_worksheet(employee, curr_ws):
 	curr_ws['C37'] = employee[17]
 	curr_ws['C39'] = employee[20]
 	##########################################################
-	curr_ws['C40'] = float(employee[25])
+	curr_ws['C40'] = (employee[25] != None) and float(employee[25]) or 0
 	curr_ws['C41'] = round((employee[23] + employee[22] + employee[21]) / euro)
 	##########################################################
 
@@ -116,4 +114,4 @@ for employee in stats_worksheet.iter_rows(min_row = 2, min_col = 1, values_only=
 
 del ticket_workbook['Sheet1']
 
-ticket_workbook.save('situation ' + month + ' ' + year + '.xlsx')
+ticket_workbook.save('fluturasi/situation ' + month + ' ' + year + '.xlsx')
