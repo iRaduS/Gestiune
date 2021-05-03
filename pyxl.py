@@ -35,6 +35,9 @@ def format_worksheet(employee, curr_ws):
 	curr_ws['B17'] = ''
 	curr_ws['C19'] = employee[3]
 	##########################################################
+	curr_ws['C33'] = employee[14]
+	curr_ws['C34'] = round(employee[14] / euro)
+	##########################################################
 	curr_ws['C40'] = ((employee[21] + employee[22] + employee[23]) / euro)
 	curr_ws['C41'] = ((employee[25] != None) and float(employee[25]) or 0)
 	# curr_ws['C42'] = round((employee[23] + employee[22] + employee[21]) / euro)
@@ -55,40 +58,15 @@ def format_worksheet(employee, curr_ws):
 	else:
 		curr_ws['C22'] = 0
 	##########################################################
+	X = curr_ws['C34'].value + curr_ws['C41'].value
 	val = (curr_ws['C20'].value + 1.25 * curr_ws['C21'].value + 1.5 * curr_ws['C22'].value)
-	normal = curr_ws['C42'].value / val;
-	quat = 1.25 * (curr_ws['C42'].value / val)
-	half = 1.5 * (curr_ws['C42'].value / val)
+	normal = X / val;
+	quat = 1.25 * (X / val)
+	half = 1.5 * (X / val)
 
 	curr_ws['D20'] = normal
 	curr_ws['D21'] = quat
 	curr_ws['D22'] = half
-
-	# X = 0
-	# if employee[14] == 0:
-	# 	X = 0
-	# else:
-	# 	X = employee[14] - (employee[12] + employee[11] + employee[10])
-	# val = (curr_ws['C20'].value + 1.25 * curr_ws['C21'].value + 1.5 * curr_ws['C22'].value) * euro
-	# if X == 0:
-	# 	curr_ws['D20'] = 0
-	# else:
-	# 	curr_ws['D20'] = X / val
-
-	# normal = 0
-	# quat = 0
-	# half = 0
-	# if X == 0:
-	# 	normal = 0
-	# 	quat = 0
-	# 	half = 0
-	# else:
-	# 	normal = X / val
-	# 	quat = 1.25 * (X / val)
-	# 	half = 1.5 * (X / val)
-
-	# curr_ws['D21'] = quat
-	# curr_ws['D22'] = half
 	##########################################################
 	curr_ws['E20'] = int(curr_ws['C20'].value * normal)
 	curr_ws['E21'] = int(curr_ws['C21'].value * quat)
@@ -109,9 +87,6 @@ def format_worksheet(employee, curr_ws):
 	##########################################################
 	curr_ws['C31'] = employee[11] + employee[12]
 	curr_ws['C32'] = round((employee[11] + employee[12]) / euro)
-	##########################################################
-	curr_ws['C33'] = employee[14]
-	curr_ws['C34'] = round(employee[14] / euro)
 	##########################################################
 	curr_ws['C36'] = employee[15]
 	curr_ws['C37'] = employee[17]
