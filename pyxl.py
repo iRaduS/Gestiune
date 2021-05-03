@@ -101,9 +101,12 @@ def format_worksheet(employee, curr_ws):
 	curr_ws['C37'] = employee[17]
 	curr_ws['C39'] = employee[20]
 	##########################################################
-	curr_ws['C40'] = (employee[25] != None) and float(employee[25]) or 0
-	curr_ws['C41'] = round((employee[23] + employee[22] + employee[21]) / euro)
+	curr_ws['C40'] = ((employee[21] + employee[22] + employee[23]) / euro)
+	curr_ws['C41'] = ((employee[25] != None) and float(employee[25]) or 0) / euro)
+	# curr_ws['C42'] = round((employee[23] + employee[22] + employee[21]) / euro)
 	##########################################################
+	#### NEW SITUATION ###
+	curr_ws['C42'] = curr_ws['C40'] + curr_ws['C41']
 
 
 ############################################
