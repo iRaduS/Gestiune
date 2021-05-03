@@ -58,9 +58,9 @@ def format_worksheet(employee, curr_ws):
 	else:
 		curr_ws['C22'] = 0
 	##########################################################
-	X = curr_ws['C34'].value + curr_ws['C41'].value
+	X = curr_ws['C42'].value
 	val = (curr_ws['C20'].value + 1.25 * curr_ws['C21'].value + 1.5 * curr_ws['C22'].value)
-	normal = X / val;
+	normal = X / val
 	quat = 1.25 * (X / val)
 	half = 1.5 * (X / val)
 
