@@ -16,7 +16,7 @@ def format_worksheet(employee, worksheet, data):
         worksheet['C26'] = employee[7]
         worksheet['C28'] = employee[8]
         worksheet['C30'] = float(employee[14]) / float(data[2])
-        money_total = float(worksheet['C30'].value) + float(employee[25])
+        money_total = (float(employee[14]) - float(employee[12]) - float(employee[11]) - float(employee[10])) / float(data[2]) + float(employee[25])
         money_per_hour = money_total / (float(worksheet['C24'].value) + 1.25 * float(worksheet['C26'].value) + 1.5 * float(worksheet['C28'].value))
         worksheet['C25'] = money_per_hour
         worksheet['C27'] = 1.25 * money_per_hour
